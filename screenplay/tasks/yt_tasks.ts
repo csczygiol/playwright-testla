@@ -5,7 +5,8 @@ import {
     Navigate,
     Wait
 } from "@testla/screenplay-playwright/web";
-import { DeclineCookie } from "../screen/yt_locators";
+import { Account, DeclineCookie } from "../screen/yt_locators";
+import { clickCookieRetry } from "./clickCookieRetry";
 
 type Mode =
     | "Login"
@@ -26,8 +27,11 @@ export class yt_tasks extends Task {
             );
             await actor.attemptsTo(
                 Wait.forLoadState('networkidle'),
-                Click.on(DeclineCookie),
-                Wait.forLoadState('networkidle')
+            );
+            await clickCookieRetry(actor, 2);
+
+            await actor.attemptsTo(
+                Click.on(Account)
             )
         }
     }
