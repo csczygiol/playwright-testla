@@ -1,7 +1,8 @@
 import { Click, Wait } from "@testla/screenplay-playwright/web";
 import { DeclineCookie } from "../screen/yt_locators";
 
-export async function clickCookieRetry(actor:any, retries:any) {
+// loop that presses the cookie decline button in case playwright misses the locator in the first try
+export async function clickCookieRetry(actor: any, retries: any) {
     for (let i = 0; i < retries; i++) {
         try {
             await actor.attemptsTo(

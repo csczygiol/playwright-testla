@@ -7,4 +7,10 @@ test.describe("test", () => {
             yt_tasks.Login(),
         );
     })
+
+    test("PlayVideo", async ({ User }) => {
+        await User.attemptsTo(
+            yt_tasks.PlayVideo(),
+        );
+    })
 })
